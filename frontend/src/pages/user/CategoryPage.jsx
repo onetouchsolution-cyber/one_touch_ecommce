@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import API from '../../services/api';
 import CategoryGrid from '../../components/common/CategoryGrid'; // Ensure this path is correct if reusing or remove if not needed for this page
+import SafeImage from '../../components/common/SafeImage';
 // Actually, we are building a specific Category Page here, so likely we want a specific Subcategory Grid + Product Grid.
 
 // Product Card Component (Internal for now, or import)
@@ -10,7 +11,7 @@ const ProductCard = ({ product }) => (
     <Link to={`/product/${product.slug}`} className="block">
         <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-4 border border-slate-100 flex flex-col h-full">
             <div className="h-40 mb-4 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
-                <img src={product.image} alt={product.name} className="h-full w-full object-contain" />
+                <SafeImage src={product.image} alt={product.name} className="h-full w-full object-contain" />
             </div>
             <div className="flex-1">
                 <h3 className="font-semibold text-slate-800 mb-1 line-clamp-2">{product.name}</h3>
@@ -144,7 +145,7 @@ const CategoryPage = () => {
                                 >
                                     <div className="h-12 w-12 mx-auto bg-slate-50 text-slate-600 rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-50 group-hover:text-brand-600 transition-colors">
                                         {/* Icon placeholder if no image */}
-                                        {sub.logo ? <img src={sub.logo} alt={sub.name} className="h-8 w-8 object-contain" /> : <span className="text-xl">#</span>}
+                                        {sub.logo ? <SafeImage src={sub.logo} alt={sub.name} className="h-8 w-8 object-contain" /> : <span className="text-xl">#</span>}
                                     </div>
                                     <h3 className="font-semibold text-slate-700 text-sm group-hover:text-brand-700">{sub.name}</h3>
                                 </Link>

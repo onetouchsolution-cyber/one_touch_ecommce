@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import API from '../../services/api';
+import SafeImage from '../../components/common/SafeImage';
 
 // Product Card Component (Internal for now)
 const ProductCard = ({ product }) => (
     <Link to={`/product/${product.slug}`} className="block">
         <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-4 border border-slate-100 flex flex-col h-full">
             <div className="h-40 mb-4 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
-                <img src={product.image} alt={product.name} className="h-full w-full object-contain" />
+                <SafeImage src={product.image} alt={product.name} className="h-full w-full object-contain" />
             </div>
             <div className="flex-1">
                 <h3 className="font-semibold text-slate-800 mb-1 line-clamp-2">{product.name}</h3>

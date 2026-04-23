@@ -1,66 +1,35 @@
-import axios from "axios";
-
-/*
-|--------------------------------------------------------------------------
-| API Base URL
-|--------------------------------------------------------------------------
-*/
-
-const BASE_URL = import.meta.env.VITE_API_URL;
-
-if (!BASE_URL) {
-  console.warn("VITE_API_URL is not defined");
-}
-
-/*
-|--------------------------------------------------------------------------
-| Axios Instance
-|--------------------------------------------------------------------------
-*/
+import axios from 'axios';
 
 const API = axios.create({
-  baseURL: `${BASE_URL}/api`,
+    baseURL: 'http://localhost:5000/api',
 });
 
-/*
-|--------------------------------------------------------------------------
-| Request Interceptor (Attach JWT Token)
-|--------------------------------------------------------------------------
-*/
-
+// Add a request interceptor to include the auth token in headers
 API.interceptors.request.use(
-  (config) => {
-    const userInfo = localStorage.getItem("userInfo");
-
-    if (userInfo) {
-      const { token } = JSON.parse(userInfo);
-
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
+    (config) => {
+        const userInfo = localStorage.getItem('userInfo');
+        if (userInfo) {
+            const { token } = JSON.parse(userInfo);
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-
-    return config;
-  },
-  (error) => Promise.reject(error)
 );
 
-/*
-|--------------------------------------------------------------------------
-| Response Interceptor (Auto Logout)
-|--------------------------------------------------------------------------
-*/
-
+// Add a response interceptor to handle 401 global errors
 API.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("userInfo");
-      window.location.href = "/login";
+    (response) => response,
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            console.error('JWT Token expired or invalid. Logging out.');
+            localStorage.removeItem('userInfo');
+            window.location.href = '/login'; // Redirect to login page
+        }
+        return Promise.reject(error);
     }
-
-    return Promise.reject(error);
-  }
 );
 
 export default API;

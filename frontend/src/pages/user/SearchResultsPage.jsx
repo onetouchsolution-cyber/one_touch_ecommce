@@ -3,13 +3,14 @@ import { useSearchParams, Link } from 'react-router-dom';
 import API from '../../services/api';
 import { motion } from 'framer-motion';
 import { FaMobileAlt, FaBox } from 'react-icons/fa';
+import SafeImage from '../../components/common/SafeImage';
 
 // Reusing ProductCard or creating a simple one
 const ProductCard = ({ product }) => (
     <Link to={`/product/${product.slug}`} className="block">
         <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-4 border border-slate-100 flex flex-col h-full">
             <div className="h-40 mb-4 bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
-                <img src={product.image} alt={product.name} className="h-full w-full object-contain" />
+                <SafeImage src={product.image} alt={product.name} className="h-full w-full object-contain" />
             </div>
             <div className="flex-1">
                 <h3 className="font-semibold text-slate-800 mb-1 line-clamp-2">{product.name}</h3>
@@ -84,7 +85,7 @@ const SearchResultsPage = () => {
                                 className="bg-white border border-slate-100 rounded-xl p-4 text-center hover:shadow-md transition-all hover:border-brand-500 block"
                             >
                                 <div className="h-16 w-16 mx-auto bg-slate-50 rounded-lg flex items-center justify-center mb-3">
-                                    {model.image ? <img src={model.image} alt={model.name} className="h-full w-full object-contain" /> : <FaMobileAlt className="text-2xl text-slate-400" />}
+                                    {model.image ? <SafeImage src={model.image} alt={model.name} className="h-full w-full object-contain" /> : <FaMobileAlt className="text-2xl text-slate-400" />}
                                 </div>
                                 <h3 className="font-semibold text-slate-700">{model.name}</h3>
                             </Link>

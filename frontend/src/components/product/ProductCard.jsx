@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SafeImage from '../common/SafeImage';
 
 const ProductCard = ({ product }) => {
     return (
@@ -14,7 +15,7 @@ const ProductCard = ({ product }) => {
                 <div className="relative h-56 bg-slate-50 overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center p-6">
                         {product.image ? (
-                            <img
+                            <SafeImage
                                 src={product.image}
                                 alt={product.name}
                                 className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"

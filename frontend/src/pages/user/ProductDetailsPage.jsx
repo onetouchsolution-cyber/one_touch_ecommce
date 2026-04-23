@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaShoppingCart, FaStar, FaCheck, FaTimes } from 'react-icons/fa';
 import API from '../../services/api';
 import Breadcrumb from '../../components/common/Breadcrumb';
+import SafeImage from '../../components/common/SafeImage';
 import { useCart } from '../../context/CartContext';
 
 const ProductDetailsPage = () => {
@@ -81,7 +82,7 @@ const ProductDetailsPage = () => {
                         className="bg-white rounded-2xl shadow-lg p-4 border border-gray-100 mb-4"
                     >
                         <div className="aspect-square flex items-center justify-center bg-gray-50 rounded-xl overflow-hidden">
-                            <img
+                            <SafeImage
                                 src={allImages[selectedImage]}
                                 alt={product.name}
                                 className="max-h-full max-w-full object-contain"
@@ -101,7 +102,7 @@ const ProductDetailsPage = () => {
                                         : 'border-gray-200 hover:border-gray-300'
                                         }`}
                                 >
-                                    <img
+                                    <SafeImage
                                         src={img}
                                         alt={`${product.name} ${index + 1}`}
                                         className="w-full h-full object-cover"
@@ -258,7 +259,7 @@ const ProductDetailsPage = () => {
                                 className="block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-brand group"
                             >
                                 <div className="aspect-square bg-gray-50 flex items-center justify-center overflow-hidden">
-                                    <img
+                                    <SafeImage
                                         src={relatedProduct.image}
                                         alt={relatedProduct.name}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

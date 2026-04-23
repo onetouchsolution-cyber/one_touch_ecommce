@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FaSearch, FaTimes, FaMobileAlt, FaBox } from 'react-icons/fa';
 import API from '../../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
+import SafeImage from './SafeImage';
 
 const GlobalSearch = () => {
     const [query, setQuery] = useState('');
@@ -111,7 +112,7 @@ const GlobalSearch = () => {
                                         className="flex items-center gap-3 px-3 py-2 hover:bg-slate-50 rounded-lg transition-colors text-sm text-slate-700"
                                     >
                                         <div className="w-8 h-8 flex items-center justify-center bg-slate-100 rounded-lg text-slate-500">
-                                            {model.image ? <img src={model.image} alt={model.name} className="w-full h-full object-contain" /> : <FaMobileAlt />}
+                                            {model.image ? <SafeImage src={model.image} alt={model.name} className="w-full h-full object-contain" /> : <FaMobileAlt />}
                                         </div>
                                         <span>{model.name}</span>
                                     </Link>
@@ -132,7 +133,7 @@ const GlobalSearch = () => {
                                         className="flex items-center gap-3 px-3 py-2 hover:bg-slate-50 rounded-lg transition-colors text-sm text-slate-700"
                                     >
                                         <div className="w-8 h-8 flex items-center justify-center bg-slate-100 rounded-lg text-slate-500">
-                                            {product.image ? <img src={product.image} alt={product.name} className="w-full h-full object-contain" /> : <FaBox />}
+                                            {product.image ? <SafeImage src={product.image} alt={product.name} className="w-full h-full object-contain" /> : <FaBox />}
                                         </div>
                                         <div className="flex flex-col">
                                             <span className="line-clamp-1">{product.name}</span>
