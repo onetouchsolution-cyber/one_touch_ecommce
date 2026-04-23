@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaSearch } from 'react-icons/fa';
 import API from '../../services/api';
 import Breadcrumb from '../../components/common/Breadcrumb';
+import SafeImage from '../../components/common/SafeImage';
 
 const MakeBrowsePage = () => {
     const [makes, setMakes] = useState([]);
@@ -86,7 +87,7 @@ const MakeBrowsePage = () => {
                                 <div className="flex flex-col items-center text-center">
                                     {make.logo ? (
                                         <div className="w-24 h-24 mb-4 flex items-center justify-center bg-gray-50 rounded-lg group-hover:bg-brand-light/10 transition">
-                                            <img
+                                            <SafeImage
                                                 src={make.logo}
                                                 alt={make.name}
                                                 className="max-w-full max-h-full object-contain"

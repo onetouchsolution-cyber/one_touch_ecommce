@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import API from '../../services/api';
+import SafeImage from './SafeImage';
 
 // Skeleton Component
 const CategorySkeleton = () => (
@@ -79,7 +80,7 @@ const CategoryGrid = () => {
                         className="bg-white rounded-xl shadow-soft p-4 flex flex-col items-center justify-center cursor-pointer border border-slate-100 h-32 hover:border-brand-500 transition-colors"
                     >
                         {cat.image ? (
-                            <img src={cat.image} alt={cat.name} className="w-12 h-12 object-contain mb-3" />
+                            <SafeImage src={cat.image} alt={cat.name} className="w-12 h-12 object-contain mb-3" />
                         ) : (
                             <div className="w-12 h-12 bg-gray-100 rounded-full mb-3 flex items-center justify-center text-gray-400 text-xs">
                                 No Icon

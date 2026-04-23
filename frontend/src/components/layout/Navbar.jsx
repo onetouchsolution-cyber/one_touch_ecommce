@@ -64,6 +64,11 @@ const Navbar = () => {
 
                         {user ? (
                             <div className="flex items-center pl-4 border-l border-slate-200">
+                                {user.isAdmin && (
+                                    <Link to="/admin/dashboard" className="mr-4 text-sm font-bold text-brand-600 hover:text-brand-700">
+                                        Dashboard
+                                    </Link>
+                                )}
                                 <Link to="/profile" className="flex items-center gap-2 mr-4 group">
                                     <div className="w-8 h-8 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-sm border border-brand-100 group-hover:bg-brand-600 group-hover:text-white transition-colors">
                                         {user.name.charAt(0)}
@@ -125,6 +130,9 @@ const Navbar = () => {
                             </Link>
                             {!user && (
                                 <Link to="/login" onClick={() => setIsMenuOpen(false)} className="p-3 bg-brand-600 text-white rounded-lg text-center font-medium active:bg-brand-700">Login</Link>
+                            )}
+                            {user && user.isAdmin && (
+                                <Link to="/admin/dashboard" onClick={() => setIsMenuOpen(false)} className="p-3 bg-brand-50 text-brand-700 rounded-lg text-center font-bold border border-brand-100 active:bg-brand-100">Dashboard</Link>
                             )}
                         </div>
 

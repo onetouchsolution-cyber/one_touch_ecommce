@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
+import SafeImage from '../common/SafeImage';
 
 const ProductGrid = ({ products, loading }) => {
     if (loading) {
@@ -36,7 +37,7 @@ const ProductGrid = ({ products, loading }) => {
                             <span className="absolute top-4 left-4 bg-red-50 text-red-600 text-[10px] font-bold px-2 py-1 rounded-full z-10">OUT OF STOCK</span>
                         )}
                         <div className="h-48 mb-4 bg-slate-50 rounded-lg flex items-center justify-center overflow-hidden p-4 group-hover:scale-105 transition-transform duration-500">
-                            <img src={product.image} alt={product.name} className="h-full w-full object-contain mix-blend-multiply" />
+                            <SafeImage src={product.image} alt={product.name} className="h-full w-full object-contain mix-blend-multiply" />
                         </div>
 
                         <div className="flex-1 flex flex-col">
